@@ -3,81 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <title>Black Box</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="bb-root">
-  <div class="bb-shell">
-    <header class="bb-topbar">
-      <div class="bb-topbar__title">BLACK BOX</div>
-      <div class="bb-topbar__level">
-        <span id="level-name">Level 1 · AND Gate</span>
+
+  <div class="bb-container">
+
+    <!-- HEADER / TOPBAR -->
+    <header class="bb-header">
+      <div class="bb-header__left">
+        <div class="bb-logo">BLACK BOX</div>
       </div>
-      <div class="bb-topbar__meta">
-        <span id="attempts">0 / 5</span>
-        <span class="bb-dot"></span>
-        <span id="timer">00:00</span>
+      <div class="bb-header__center">
+        <div class="bb-level-badge">
+          <span class="bb-level-badge__number" id="level-number">1</span>
+          <span class="bb-level-badge__name" id="level-name">AND Gate</span>
+        </div>
+      </div>
+      <div class="bb-header__right">
+        <div class="bb-stat">
+          <span class="bb-stat__label">Attempts</span>
+          <span class="bb-stat__value" id="attempts">0 / 5</span>
+        </div>
+        <div class="bb-stat__divider">•</div>
+        <div class="bb-stat">
+          <span class="bb-stat__label">Timer</span>
+          <span class="bb-stat__value" id="timer">00:00</span>
+        </div>
       </div>
     </header>
 
+    <!-- MAIN GAME AREA -->
     <main class="bb-main">
-      <section class="bb-panel bb-panel--io">
-        <div class="bb-input">
-          <h2 class="bb-panel__title">INPUT</h2>
-          <div class="bb-input-grid" role="grid" aria-label="Input grid">
-            <button class="bb-btn" role="gridcell">0</button>
-            <button class="bb-btn" role="gridcell">1</button>
-            <button class="bb-btn" role="gridcell">2</button>
-            <button class="bb-btn" role="gridcell">3</button>
+
+      <!-- INPUT / OUTPUT PANEL -->
+      <section class="bb-section bb-section--io">
+        <div class="bb-io-container">
+
+          <!-- INPUT GRID -->
+          <div class="bb-io-panel bb-io-panel--input">
+            <div class="bb-io-header">
+              <span class="bb-io-title">INPUT</span>
+              <span class="bb-io-description">Select your input(s)</span>
+            </div>
+            <div class="bb-input-wrapper">
+              <div class="bb-input-grid" role="grid" aria-label="Input options">
+                <button class="bb-input-btn" role="gridcell">0</button>
+                <button class="bb-input-btn" role="gridcell">1</button>
+                <button class="bb-input-btn" role="gridcell">2</button>
+                <button class="bb-input-btn" role="gridcell">3</button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="bb-output">
-          <h2 class="bb-panel__title">OUTPUT</h2>
-          <div id="output-slot" class="bb-output-slot" aria-live="polite">
-            <span class="bb-output-slot__value">?</span>
-            <span class="bb-output-slot__hint">Awaiting attempt</span>
+
+          <!-- OUTPUT SLOT -->
+          <div class="bb-io-panel bb-io-panel--output">
+            <div class="bb-io-header">
+              <span class="bb-io-title">OUTPUT</span>
+              <span class="bb-io-description">Result of the black-box function</span>
+            </div>
+            <div class="bb-output-display" id="output-slot" aria-live="polite">
+              <span class="bb-output-value">?</span>
+              <span class="bb-output-state">Awaiting attempt</span>
+            </div>
+            <button id="submit-attempt" class="bb-btn bb-btn--primary">Test Input (Enter)</button>
           </div>
-          <button id="submit-attempt" class="bb-btn bb-btn--primary">
-            Test Input (Enter)
-          </button>
+
         </div>
       </section>
 
-      <section class="bb-panel bb-panel--history">
-        <h2 class="bb-panel__title">HISTORY</h2>
-        <table class="bb-table" aria-label="Attempt history">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Input</th>
-              <th>Output</th>
-            </tr>
-          </thead>
-          <tbody id="history-body"></tbody>
-        </table>
-      </section>
-
-      <section class="bb-panel bb-panel--hypothesis">
-        <h2 class="bb-panel__title">HYPOTHESIS</h2>
-        <div class="bb-hypo-row">
-          <select id="hypo-category" class="bb-select">
-            <option value="">Rule type…</option>
-            <option value="boolean">Boolean logic</option>
-            <option value="arithmetic">Arithmetic</option>
-            <option value="stateful">Stateful</option>
-            <option value="pattern">Pattern</option>
-          </select>
-          <select id="hypo-template" class="bb-select">
-            <option value="">Specific rule…</option>
-          </select>
-          <input id="hypo-param-1" class="bb-input-field" type="number" placeholder="k" />
-          <input id="hypo-param-2" class="bb-input-field" type="number" placeholder="n" />
-          <button id="submit-hypo" class="bb-btn bb-btn--primary">
-            Submit Hypothesis (Ctrl+Enter)
-          </button>
+      <!-- HISTORY PANEL -->
+      <section class="bb-section bb-section--history">
+        <div class="bb-section-header">
+          <span class="bb-section-title">HISTORY</span>
+        </div>
+        <div class="bb-history-wrapper">
+          <table class="bb-table" aria-label="Attempt history">
+            <thead class="bb-table-head">
+              <tr>
+                <th>#</th>
+                <th>Input</th>
+                <th>Output</th>
+              </tr>
+            </thead>
+            <tbody class="bb-table-body" id="history-body">
+              <tr><td colspan="3" class="bb-history-empty">No attempts yet</td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
+
+      <!-- HYPOTHESIS PANEL -->
+      <section class="bb-section bb-section--hypothesis">
+        <div class="bb-section-header">
+          <span class="bb-section-title">HYPOTHESIS</span>
+        </div>
+        <div class="bb-hypothesis-form bb-hypo-row">
+          <div class="bb-form-group">
+            <label for="hypo-category" class="bb-form-label">Rule Type</label>
+            <select id="hypo-category" class="bb-select">
+              <option value="">Select…</option>
+              <option value="boolean">Boolean logic</option>
+              <option value="arithmetic">Arithmetic</option>
+              <option value="stateful">Stateful</option>
+              <option value="pattern">Pattern</option>
+            </select>
+          </div>
+          <div class="bb-form-group">
+            <label for="hypo-template" class="bb-form-label">Specific Rule</label>
+            <select id="hypo-template" class="bb-select">
+              <option value="">Select rule…</option>
+            </select>
+          </div>
+          <div class="bb-form-group">
+            <label for="hypo-param-1" class="bb-form-label">Param 1</label>
+            <input id="hypo-param-1" class="bb-input-field" type="number" placeholder="k" />
+          </div>
+          <div class="bb-form-group">
+            <label for="hypo-param-2" class="bb-form-label">Param 2</label>
+            <input id="hypo-param-2" class="bb-input-field" type="number" placeholder="n" />
+          </div>
+          <button id="submit-hypo" class="bb-btn bb-btn--primary">Submit Hypothesis (Ctrl+Enter)</button>
+        </div>
+      </section>
+
     </main>
 
-    <script src="./index.js"></script>
   </div>
+
+  <script src="./index.js"></script>
 </body>
 </html>
