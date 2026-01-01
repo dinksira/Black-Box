@@ -1,7 +1,6 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,7 +22,7 @@ export default {
     ]
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js', '.css']
   },
   output: {
     path: path.resolve(__dirname, 'dist/renderer'),
@@ -32,11 +31,6 @@ export default {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/renderer/index.html'
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'src/renderer/assets', to: 'assets', noErrorOnMissing: true }
-      ]
     })
   ],
   devtool: 'source-map',
