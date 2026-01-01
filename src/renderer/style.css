@@ -1,0 +1,161 @@
+/* src/renderer/style.css */
+.bb-root {
+  margin: 0;
+  padding: 0;
+  background: #0b0b0f;
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.bb-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.bb-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid #27272f;
+  background: #050509;
+  font-size: 13px;
+}
+
+.bb-topbar__title {
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
+
+.bb-topbar__level {
+  opacity: 0.9;
+}
+
+.bb-topbar__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9ca3af;
+}
+
+.bb-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: #4b5563;
+}
+
+.bb-main {
+  flex: 1;
+  padding: 12px 16px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 8px;
+}
+
+.bb-panel {
+  border: 1px solid #27272f;
+  border-radius: 6px;
+  padding: 8px 10px;
+  background: #111827;
+}
+
+.bb-panel__title {
+  margin: 0 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #9ca3af;
+}
+
+.bb-panel--io {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 8px;
+}
+
+.bb-input-grid {
+  display: grid;
+  grid-auto-rows: 32px;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  gap: 6px;
+}
+
+.bb-output {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bb-output-slot {
+  border-radius: 6px;
+  border: 1px solid #374151;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #020617;
+}
+
+.bb-output-slot__value {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.bb-output-slot__hint {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.bb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.bb-table th,
+.bb-table td {
+  border-bottom: 1px solid #1f2937;
+  padding: 4px 6px;
+}
+
+.bb-table tbody tr:nth-child(even) {
+  background: #020617;
+}
+
+.bb-hypo-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.bb-btn {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.bb-btn--primary {
+  background: #22d3ee;
+  color: #020617;
+}
+
+.bb-select,
+.bb-input-field {
+  background: #020617;
+  border-radius: 4px;
+  border: 1px solid #374151;
+  color: #e5e7eb;
+  padding: 4px 6px;
+  font-size: 12px;
+}
+
+.bb-select:focus,
+.bb-input-field:focus,
+.bb-btn:focus {
+  outline: 2px solid #22d3ee;
+  outline-offset: 1px;
+}
